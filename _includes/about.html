@@ -21,5 +21,10 @@
 </p>
     <div><img src="{{ "/assets/img/img_1.png" | prepend: site.baseurl }}" width="50%" height="50%"/><p>Figure 1: Decision tree example</p></div>
     <img alt="Decision Tree" src="{{ "/assets/img/img_1.png" | prepend: site.baseurl }}" width="50%" height="50%" /><p>
+    
+    <h4> Learning a Decision Tree </h4>
+    <p> Different algorithms can be used to learn a decision tree from training data set. CuDB uses ID3 learning to construct decision trees.
+      The pseudo-code is shown below in Figure 2. In each iteration, it traverses the set of unvisited attributes and choose select the best 
+      attribute that provides the most information. This in achieved by calculating the <a class="link" href="http://www.cs.cmu.edu/~roni/10601-slides/ch3.pdf" data-scroll>entropy</a>. 
   </div>
 </div>
