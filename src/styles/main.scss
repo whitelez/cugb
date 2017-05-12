@@ -107,10 +107,10 @@ body {
     }
   }
   .site-user {
-    font-size: 5px;
-    display: block;
+    font-size: 20px;
+    display: flex;
     @media only screen and (min-width:$cut){
-      font-size: 10px;
+      font-size: 20px;
     }
   }
   .link {
