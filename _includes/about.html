@@ -24,6 +24,7 @@
     <h4> Learning a Decision Tree </h4>
     <p> Different algorithms can be used to learn a decision tree from training data set. CuDB uses ID3 learning to construct decision trees.
       The pseudo-code is shown below in Figure 2. In each iteration, it traverses the set of unvisited attributes and choose select the best 
-      attribute that provides the most information. This in achieved by calculating the <a class="link" href="http://www.cs.cmu.edu/~roni/10601-slides/ch3.pdf" data-scroll>entropy</a>. 
+      attribute that provides the most information. This in achieved by calculating the <a class="link" target="_blank" href="http://www.cs.cmu.edu/~roni/10601-slides/ch3.pdf" data-scroll>entropy</a> and choose the attribute with the largest information gain. Then it splits the data according to the selected attribute, and recurse on each of the subset. 
+
   </div>
 </div>
