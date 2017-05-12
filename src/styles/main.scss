@@ -107,7 +107,7 @@ body {
     }
   }
   .site-user {
-    display: block;
+    display: flex;
     font-size: 50px;
     @media only screen and (min-width:$cut){
       font-size: 20px;
