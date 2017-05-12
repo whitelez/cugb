@@ -1,11 +1,12 @@
 # Site settings
-title: CuGB -- CUDA Based Gradient Boosting Decision Tree
+title: CuGB
+subTitle: CUDA Based Gradient Boosting Decision Tree
 description: 15-418 Final Project
 # baseurl: "/particle" # the subpath of your site, e.g. /blog
 # url: "localhost:3000" # the base hostname & protocol for your site e.g. http://willianjusten.com.br
 
 # User settings
-username: Enzhe Lu
+username: Enzhe Lu, Jack Dong
 user_description: Bicycle rights irony actually neutra typewriter lyft. Man bun taxidermy put a bird on it, umami yr ramps pop-up ugh bushwick chia lo-fi. Occupy bitters pour-over snackwave you probably haven't heard of them small batch. Cornhole mustache man bun letterpress echo park VHS.
 user_title: 15-418 Final Project
 email: anon@anon.com
