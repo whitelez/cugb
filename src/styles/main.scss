@@ -204,9 +204,16 @@ body {
 }
 
 .user-details {
-  text-align: center;
+  text-align: left;
   font-size: 16px;
   margin: 10px auto;
+  h3 {
+    text-align: center;
+  }
+  h4 {
+    text-align: center;
+    background-color: #1A5276;
+  }
 }
 
 .user-projects {
