@@ -106,6 +106,15 @@ body {
       font-size: 20px;
     }
   }
+  .site-user {
+    font-size: 5px;
+    display: block;
+    line-height: 1;
+    margin: 5px 0 10px 0;
+    @media only screen and (min-width:$cut){
+      font-size: 10px;
+    }
+  }
   .link {
     color: #FFF;
     display: inline-flex;
