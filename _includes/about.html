@@ -134,5 +134,20 @@
     
     <p align="left">After we did this improvement, we analyzed our code again, but we haven’t be able to figure out 
       other point for improving parallelization under current algorithm.</p>
+  
+    <h3>Further Research</h3>
+    <p align="left">In future research, it is possible to use other algorithms that consumes less time than our 
+      current algorithm which is based on Friedman 1999 paper. The paper came up with gradient boosting technique 
+      almost 20 years ago, more parallelizable approach would emerge in the passing years, thus GBDT could take less 
+      time than our approach. Such as the histogram GBDT algorithm could bring down the execution time even further. </p>
+    
+    <p align="left">Also, our current implementation is working on single GPU, with expansion of data, the size of  
+      dataset will exceed total GPU device memory. Therefore, in order to support larger datasets, CuDB could be extended 
+      to support either multiple GPU with a shared device memory or streamly computing of decision tree in single GPU.</p>
+    
+    <h3>References</h3>
+    <p align="left"><cite>Friedman, J. H. (1999). Greedy function approximation: A gradient boosting machine. Retrieved May 12, 2017, 
+      from <a class="link" target="_blank" href="http://projecteuclid.org/euclid.aos/1013203451">http://projecteuclid.org/euclid.aos/1013203451</a></cite></p>
+  
   </div>
 </div>
