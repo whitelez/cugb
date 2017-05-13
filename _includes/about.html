@@ -67,5 +67,25 @@
       <a class="link" target="_blank" href="https://github.com/dmlc/xgboost/">xgboost</a>. We slightly modified the original dataset to 
       fit our needs. The largest training dataset contains 1 million entries with 130 attributes. The following are 2 
       requirements on the dataset: </p>
+    <div align="left"> 
+      <ul>
+        <li>All attributes only take binary values, either it’s present or not. The response variable takes 1 and -1.</li>
+        <li>And the data set is sparse, meaning that less than half attributes are present for each data entry.</li>
+      </ul>
+    </div>  
+    
+    <h3>Approach</h3>
+    <h5>Sequential Vesion</h5>
+    
+    <p align="left">We first construct a sequential version based on the Friedman’s 1999 paper of gradient boosting tree, 
+      for our dataset is a binary value attribute dataset and our model is expected to be a binary classifier. 
+      This particular model has been discussed in Friedman’s paper. In its paper, Friedman proposed one-step Newton-Raphson 
+      approximation of the linear optimization of the loss function. We directly implemented that approximation for it would 
+      take less time than computing the whole gradient of all possible outcome and select the best one from it. 
+
+      The construction algorithm of decision tree is based on pseudo-code provided by 10-701 course, and we are using entropy 
+      approach (ID3 algorithm) to select the best attribute from whole dataset in each iteration. 
+
+    
   </div>
 </div>
