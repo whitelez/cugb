@@ -135,6 +135,23 @@
     <p align="left">After we did this improvement, we analyzed our code again, but we haven’t be able to figure out 
       other point for improving parallelization under current algorithm.</p>
   
+    <h3>Results</h3>
+    <p align="left">The final result met our expectation. Figure 6 shows how our cuda version code compare to the 
+      sequential version code. With increasing of data, cuda shows remarkable parallelization ability and it could 
+      achieve about 160x speed up with 1 million dataset. </p>
+    
+    <p align="left">We have further breakdown the the time of our current cuda model in 1 million dataset to determine 
+      the bottleneck of our code. As shown in Figure 7 , no matter how many data is request for copy from host memory 
+      to device memory, the CUDA memory copy time of the data does not change much. Most of the time is consumed by 
+      building the model, since we have already parallelized the current algorithm, to improve the model building time, 
+      it could be only done by adopting faster algorithms.</p>
+    
+    <p align="left">Distributed GBDT library xgboost does have a CUDA plugin available. However we cannot use it since it 
+      cannot compile without cmake. Based on their introductory material, we only know it has ability to execute 1 million 
+      records of 50 column in 500 iterations in 193 seconds. Our dataset does not have too much residuals, and it would left 
+      with extreme small residuals, which would be considered as zero after 25 iterations. Thus with our approach, and the 
+      dataset, we would only need 22 seconds to execute. </p>
+
     <h3>Further Research</h3>
     <p align="left">In future research, it is possible to use other algorithms that consumes less time than our 
       current algorithm which is based on Friedman 1999 paper. The paper came up with gradient boosting technique 
