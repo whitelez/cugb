@@ -11,7 +11,7 @@
       </ul>
     </div>
     <h3> Background </h3>
-    <h4> Decision Tree </h4>
+    <h5> Decision Tree </h5>
     <p align="left"> In machine learning, a decision tree is a structure used as a predictive model 
       to conclude about the item’s target value from a set of attributes. A classification tree takes a finite 
       set of values that represent categories, whereas a regression tree can take continuous values to represent 
@@ -21,7 +21,7 @@
 </p>
     <div><img src="{{ "/assets/img/img_1.png" | prepend: site.baseurl }}" width="50%" height="50%"/><p>Figure 1: Decision tree example</p></div>
     
-    <h4> Learning a Decision Tree </h4>
+    <h5> Learning a Decision Tree </h5>
     <p align="left"> Different algorithms can be used to learn a decision tree from training data set. CuDB uses ID3 learning to construct decision trees.
       The pseudocode is shown below in <i>Figure 2</i>. In each iteration, it traverses the set of unvisited attributes and choose select the best 
       attribute that provides the most information. This is achieved by calculating the 
@@ -31,7 +31,7 @@
     
     <div><img src="{{ "/assets/img/id3.png" | prepend: site.baseurl }}" width="50%" height="50%"/><p>Figure 2: ID3 pseudocode</p></div>
    
-    <h4> Gradient Boosting </h4>
+    <h5> Gradient Boosting </h5>
     
     <p align="left"> A single decision tree is a weak predictor and has its limitations. Gradient boosting is the process of 
       building multiple trees, combining weak predictors to form a strong predicted model. The intuition behind it is that the 
