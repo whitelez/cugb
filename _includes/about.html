@@ -37,7 +37,7 @@
       building multiple trees, combining weak predictors to form a strong predicted model. The intuition behind it is that the 
       next iteration corrects the previous error in order to improve overall reliability. The predict result is a weighted 
       combination of each layer of the trees. A simple example is shown below in <i>Figure 3</i>.</p>
-    <div><img src="{{ "/assets/img/gb_graph.png" | prepend: site.baseurl }}" width="80%" height="80%"/><p>Figure 3: Gradient boosting example</p></div>
+    <div><img src="{{ "/assets/img/gb_graph.png" | prepend: site.baseurl }}" width="60%" height="60%"/><p>Figure 3: Gradient boosting example</p></div>
  
     <p align="left"> The general steps of gradient boosting is first construct a naive initial tree. Then for each iteration, 
       we construct a new tree to best reduce error using gradient of the loss function. We calculate a weight &Gamma;
@@ -86,7 +86,7 @@
     <p align="left">The construction algorithm of decision tree is based on pseudo-code provided by 10-701 course, 
       and we are using entropy approach (ID3 algorithm) to select the best attribute from whole dataset in each iteration. </p>
     
-    <div><img src="{{ "/assets/img/gradientboosting.png" | prepend: site.baseurl }}" width="60%" height="60%"/><p>Figure 5: Gradient boosting with approximation pseudocode</p></div>
+    <div><img src="{{ "/assets/img/gradientboosting.png" | prepend: site.baseurl }}" width="50%" height="50%"/><p>Figure 5: Gradient boosting with approximation pseudocode</p></div>
  
     <h5>Parallel Attempt 1</h5>
     <p align="left"> In the first attempt of parallelization with CUDA, we simply translate the whole directly into 
@@ -128,7 +128,7 @@
       whether a particular attribute is positive or not. Thus we modified our program the third time to deal with newly 
       introduced bottleneck.</p>
     
-    <h5>Parallel Attempt 3<\h5>
+    <h5>Parallel Attempt 3</h5>
     <p align="left">We observed that in the dataset, all attributes are stored in a ascending order. Thus we would be 
       able to use Binary search to improve the speed up of finding attributes from the current dataline. </p>
     
