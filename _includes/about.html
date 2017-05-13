@@ -47,9 +47,11 @@
     <div><img src="{{ "/assets/img/gradient_boosting.png" | prepend: site.baseurl }}" width="60%" height="60%"/><p>Figure 4: Gradient boosting pseudocode</p></div>
  
     <p align="left">We identified some challenges with gradient boosting. First, a sequential version itself is hard to implement, 
-      requiring deep understanding of machine learning and math. We decided to use our implementation as baseline. 
-      Second, we need to identify potential places to paralize. The last concern is the reprentation of data set, 
-      as in real world application it is quite large. </p>
+      requiring deep understanding of machine learning and sophisticated math operations. We decided to use our implementation as baseline. 
+      Second, we need to identify potential places to paralize. Building different levels is purely sequential, but there is significant 
+      room for parallelization in constructing individual trees. Constructing a decision tree in each iteration requires heavy computation 
+      since we need to examine all attributes of all data entries. However, the workload is relatively balanced in this operation. The last 
+      concern is the reprentation of data set, as in real world application it is quite large. </p>
     
     <h3>Preliminary Requirements</h3>
     <h5>Platform</h5>
@@ -73,6 +75,10 @@
         <li>And the data set is sparse, meaning that less than half attributes are present for each data entry.</li>
       </ul>
     </div>  
+    <p align="left">The reason behind these 2 assumptions relates closely to how we represent input data set. In particular, 
+      we use a compressed data structure; instead of parsing all attributes for each data entry, we only keep the attributes 
+      that are present. This reduces data communication overhead and scales to larger data sets with memory constraints. More 
+      detailed explanation would be provided in the following sections. 
     
     <h3>Approach</h3>
     <h5>Sequential Vesion</h5>
@@ -152,8 +158,8 @@
       with extreme small residuals, which would be considered as zero after 25 iterations. Thus with our approach, and the 
       dataset, we would only need 22 seconds to execute. </p>
 
-    <div><img src="{{ "/assets/img/chart.png" | prepend: site.baseurl }}" width="50%" height="50%"/><p>Figure 6: Performance analysis and comparison</p></div>
-    <div><img src="{{ "/assets/img/breakdown.png" | prepend: site.baseurl }}" width="50%" height="50%"/><p>Figure 7: Parallel implementation time breakdown</p></div>
+    <div><img src="{{ "/assets/img/chart.png" | prepend: site.baseurl }}" width="70%" height="70%"/><p>Figure 6: Performance analysis and comparison</p></div>
+    <div><img src="{{ "/assets/img/breakdown.png" | prepend: site.baseurl }}" width="70%" height="70%"/><p>Figure 7: Parallel implementation time breakdown</p></div>
     
     <h3>Further Research</h3>
     <p align="left">In future research, it is possible to use other algorithms that consumes less time than our 
