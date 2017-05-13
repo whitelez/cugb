@@ -37,8 +37,14 @@
       building multiple trees, combining weak predictors to form a strong predicted model. The intuition behind it is that the 
       next iteration corrects the previous error in order to improve overall reliability. The predict result is a weighted 
       combination of each layer of the trees. A simple example is shown below in <i>Figure 3</i>.</p>
-    <div><img src="{{ "/assets/img/gb_graph.png" | prepend: site.baseurl }}" width="50%" height="50%"/><p>Figure 3: Gradient boosting example</p></div>
+    <div><img src="{{ "/assets/img/gb_graph.png" | prepend: site.baseurl }}" width="80%" height="80%"/><p>Figure 3: Gradient boosting example</p></div>
  
-
+    <p align="left"> The general steps of gradient boosting is first construct a naive initial tree. Then for each iteration, 
+      we construct a new tree to best reduce error using gradient of the loss function. We calculate a weight &Gamma 
+      for the prediction result of this tree by minimizing the new loss. The final prediction output would be the weighted 
+      sum of results obtained in all iterations.</p>
+    
+    <div><img src="{{ "/assets/img/gradient_boosting.png" | prepend: site.baseurl }}" width="80%" height="80%"/><p>Figure 4: Gradient boosting pseudocode</p></div>
+ 
   </div>
 </div>
