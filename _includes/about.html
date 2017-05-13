@@ -40,11 +40,32 @@
     <div><img src="{{ "/assets/img/gb_graph.png" | prepend: site.baseurl }}" width="80%" height="80%"/><p>Figure 3: Gradient boosting example</p></div>
  
     <p align="left"> The general steps of gradient boosting is first construct a naive initial tree. Then for each iteration, 
-      we construct a new tree to best reduce error using gradient of the loss function. We calculate a weight &Gamma 
+      we construct a new tree to best reduce error using gradient of the loss function. We calculate a weight &Gamma;
       for the prediction result of this tree by minimizing the new loss. The final prediction output would be the weighted 
       sum of results obtained in all iterations.</p>
     
-    <div><img src="{{ "/assets/img/gradient_boosting.png" | prepend: site.baseurl }}" width="80%" height="80%"/><p>Figure 4: Gradient boosting pseudocode</p></div>
+    <div><img src="{{ "/assets/img/gradient_boosting.png" | prepend: site.baseurl }}" width="60%" height="60%"/><p>Figure 4: Gradient boosting pseudocode</p></div>
  
+    <p align="left">We identified some challenges with gradient boosting. First, a sequential version itself is hard to implement, 
+      requiring deep understanding of machine learning and math. We decided to use our implementation as baseline. 
+      Second, we need to identify potential places to paralize. The last concern is the reprentation of data set, 
+      as in real world application it is quite large. </p>
+    
+    <h3>Preliminary Requirements</h3>
+    <h5>Platform</h5>
+    <p align="left">The benchmark result is obtained by running the code on the following platforms:</p>
+    <div align="left"> 
+      <ul>
+        <li>The sequential version is run on machines containing 8 core 3.2 GHz Intel Core i7 processors.</li>
+        <li>The Cuda version is run on machines containing <a class="link" target="_blank" href="https://www.nvidia.com/en-us/geforce/products/10series/geforce-gtx-1080/">NVIDIA GeForce GTX 1080</a> . </li>
+      </ul>
+    </div>  
+    
+    <h5>Data Set Assumptions</h5>
+    
+    <p align="left">We obtained training and testing data sets from open source project 
+      <a class="link" target="_blank" href="https://github.com/dmlc/xgboost/">xgboost</a>. We slightly modified the original dataset to 
+      fit our needs. The largest training dataset contains 1 million entries with 130 attributes. The following are 2 
+      requirements on the dataset: </p>
   </div>
 </div>
