@@ -97,7 +97,7 @@
     <h5>Parallel Attempt 1</h5>
     <p align="left"> In the first attempt of parallelization with CUDA, we simply translate the algorithm directly into 
       CUDA version. We have carefully analyzed the program and we discovered that our approach should be different from 
-      previous <a class="link" ref="http://zhanpengfang.github.io/418home.html" target="_blank">year project</a> approach. They are using thread parallelization during construction of a decision tree. 
+      previous <a class="link" href="http://zhanpengfang.github.io/418home.html" target="_blank">year project</a> approach. They are using thread parallelization during construction of a decision tree. 
       Such a top-down approach would provide great parallelization on CPU threads with OpenMP. However, since gradient 
       boosting is construct based on weak decision trees that has lower levels, the same top-down approach would waste 
       most of the computing power provided by CUDA and GTX1080. Thus we need to figure out a new data parallel approach. 
