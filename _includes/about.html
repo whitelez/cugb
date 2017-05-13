@@ -81,11 +81,58 @@
       for our dataset is a binary value attribute dataset and our model is expected to be a binary classifier. 
       This particular model has been discussed in Friedman’s paper. In its paper, Friedman proposed one-step Newton-Raphson 
       approximation of the linear optimization of the loss function. We directly implemented that approximation for it would 
-      take less time than computing the whole gradient of all possible outcome and select the best one from it. 
+      take less time than computing the whole gradient of all possible outcome and select the best one from it. </p>
 
-      The construction algorithm of decision tree is based on pseudo-code provided by 10-701 course, and we are using entropy 
-      approach (ID3 algorithm) to select the best attribute from whole dataset in each iteration. 
-
+    <p align="left">The construction algorithm of decision tree is based on pseudo-code provided by 10-701 course, 
+      and we are using entropy approach (ID3 algorithm) to select the best attribute from whole dataset in each iteration. </p>
     
+    <div><img src="{{ "/assets/img/gradientboosting.png" | prepend: site.baseurl }}" width="60%" height="60%"/><p>Figure 5: Gradient boosting with approximation pseudocode</p></div>
+ 
+    <h5>Parallel Attempt 1</h5>
+    <p align="left"> In the first attempt of parallelization with CUDA, we simply translate the whole directly into 
+      CUDA version. We have carefully analyzed the program and we discovered that our approach should be different from 
+      previous year projects approach. They are using thread parallelization during construction of a decision tree. 
+      Such a top-down approach would provide great parallelization on CPU threads with OpenMP. However, since gradient 
+      boosting is construct based on weak decision trees that has lower levels, the same top-down approach would waste 
+      most of the computing power provided by CUDA and GTX1080. Thus we need to figure out a new data parallel approach. 
+      We decided to store Data in a huge GPU array of 130 attributes for each line. Each CUDA thread should read data 
+      through bias or indexing of that array. Except the second step in GDBT main loop body, all other three steps are 
+      loosely connected. They are suitable to be directly compute through function mapping. The sum of values are done 
+      with prefix-sum like reduction kernel. For building decision tree, we use extra two data length int array to represent 
+      as mask of values for each decision node. This would avoid the necessity of copying data and distribute new copy 
+      as we have done in the sequential version.</p>
+
+     <p align="left"> However, during the implementation, we have realized this approach does not provide good parallelization. 
+      The data communication overhead between GBDT steps area high, and each step is mapping their functions to data 
+      for only one purpose, which leads to low compute ratio. Furthermore, the way we storing the data consumes lots of 
+      memory, but lots of them are only access as an indicator of having or not having an attribute. Therefore, we made 
+      several improvements and have a different version of parallelization.</p>
+
+    <h5>Parallel Attempt 2</h5>
+    <p align="left">In second version of CUDA parallelization, we have done several things to improve the parallelization 
+      of our model. The first thing we do is de-code the algorithm into tiny compute steps to determine potential 
+      parallelization in each steps. Thus we figured out with the approximate approach, we are able to compute GBDT 
+      loop body step 3, 4 and step 1 of next loop with one reduction and one mapper function. We also figured out during 
+      the construction of the tree, several components could be calculating at the same time, since they do not have 
+      dependency of each other. Thus we used a single reduction to compute four different attributes to burst the 
+      construction of decision tree. </p>
+    
+    <p align="left">We also changed our data representation, for we have the binary attribute dataset, we could infer 
+      the value of attributes by only storing the data that have positive attributes. Thus the data set has been reduced 
+      to less than half of the original dataspace. We also stored all intermediate result in the extra few slots of dataline,
+      which reduce the communication overhead. Each step only need to access those intermediate result they needed from 
+      the mutually agreed position of each dataline. </p>
+    
+    <p align="left">However, even the improvement significantly speed up our code, we are also introduced new bottleneck 
+      into our code. In this version, each thread need to sequentially loop through the entire attribute list to figure out 
+      whether a particular attribute is positive or not. Thus we modified our program the third time to deal with newly 
+      introduced bottleneck.</p>
+    
+    <h5>Parallel Attempt 3<\h5>
+    <p align="left">We observed that in the dataset, all attributes are stored in a ascending order. Thus we would be 
+      able to use Binary search to improve the speed up of finding attributes from the current dataline. </p>
+    
+    <p align="left">After we did this improvement, we analyzed our code again, but we haven’t be able to figure out 
+      other point for improving parallelization under current algorithm.</p>
   </div>
 </div>
